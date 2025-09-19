@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginFormController implements Initializable {
@@ -31,19 +32,23 @@ public class LoginFormController implements Initializable {
     @FXML
     void btnLoginOnAction(ActionEvent event) {
         boolean result=loginFormService.studentlogin(txtUserName.getText(),txtPassword.getText());
-        clearTextArea();
+
         if(result==true){
             try {
-                studentRegistration.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/studentRegistrationForm.fxml"))));
+                studentRegistration.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/studentRegistrationForm.fxml")))));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                //throw new RuntimeException(e);
+                JOptionPane.showMessageDialog(null, "Error loading the registration form.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            studentRegistration.setResizable(false);
+            studentRegistration.show();
         }else {
             JOptionPane.showMessageDialog(null,
                     "Invalid User Name Or Password",
                     "Login Fail",
                     JOptionPane.ERROR_MESSAGE);
         }
+        clearTextArea();
     }
 
     @Override

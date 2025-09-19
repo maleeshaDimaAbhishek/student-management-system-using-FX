@@ -1,0 +1,11 @@
+
+#txtFullName {
+    -fx-text-fill: white; /* Set the text color to white */
+    -fx-background-color: #333333; /* Optional: Set background color to dark */
+}
+
+
+#txtEmail {
+    -fx-text-fill: white; /* Set the text color to white */
+    -fx-background-color: #333333; /* Optional: Set background color to dark */
+}
