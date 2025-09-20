@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.viewDetails.ViewDetailsFormController">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/studentRegistrationBack.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tbblViewRegDetails" layoutX="223.0" layoutY="15.0" prefHeight="256.0" prefWidth="368.0">
+        <columns>
+          <TableColumn fx:id="tblId" prefWidth="55.0" text="ID" />
+          <TableColumn fx:id="tblName" prefWidth="83.0" text="Name" />
+            <TableColumn fx:id="tblEmail" prefWidth="87.0" text="E-mail" />
+            <TableColumn fx:id="gender" prefWidth="57.0" text="Gender" />
+            <TableColumn fx:id="course" prefWidth="93.0" text="Course" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnBack" layoutX="348.0" layoutY="292.0" onAction="#btnBackOnAction" text="Back To Registration" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="16.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

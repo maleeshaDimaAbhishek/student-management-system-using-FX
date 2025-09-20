@@ -22,7 +22,6 @@
             <Image url="@../images/studentRegistrationBack.jpg" />
          </image>
       </ImageView>
-
       <JFXTextField fx:id="txtFullName" layoutX="408.0" layoutY="57.0" styleClass="#txtFullName {    -fx-text-fill: white; /* Change text color to white */}" unFocusColor="WHITE">
          <font>
             <Font name="Times New Roman" size="14.0" />

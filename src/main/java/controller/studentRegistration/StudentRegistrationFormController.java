@@ -4,12 +4,17 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import controller.login.LoginFormController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -43,6 +48,7 @@ public class StudentRegistrationFormController implements Initializable {
     private JFXTextField txtId;
     @FXML
     private ToggleGroup genderGroup;
+    Stage viewDetails=new Stage();
     StudentRegistrationService studentRegistrationService=new StudentRegistrationController();
     @FXML
     void btnResetOnAction(ActionEvent event) {
@@ -51,21 +57,37 @@ public class StudentRegistrationFormController implements Initializable {
 
     @FXML
     void btnSubmitOnAction(ActionEvent event) {
-        JFXRadioButton selectedRadioButton = (JFXRadioButton) genderGroup.getSelectedToggle();
-        String gender="";
-        if (selectedRadioButton != null) {
-            gender = selectedRadioButton.getText();
+        if (txtEmail.getText()==""||txtFullName.getText()==""){
+            JOptionPane.showMessageDialog(null,
+                    "Please Fill All the fields",
+                    "Empty Field",
+                    JOptionPane.ERROR_MESSAGE);
+        }else{
+            JFXRadioButton selectedRadioButton = (JFXRadioButton) genderGroup.getSelectedToggle();
+            String gender="";
+            if (selectedRadioButton != null) {
+                gender = selectedRadioButton.getText();
+            }
+            boolean result =studentRegistrationService.registration(txtFullName.getText(),txtEmail.getText(),gender,cmbx.getValue());
+            if(result){
+                JOptionPane.showMessageDialog(null, "Registration Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
-        boolean result =studentRegistrationService.registration(txtFullName.getText(),txtEmail.getText(),gender,cmbx.getValue());
-        if(result){
-            JOptionPane.showMessageDialog(null, "Registration Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-        }
+
         clearFields();
 
     }
     @FXML
     void btnViewDetailsOnActionOnAction(ActionEvent event) {
-
+        try {
+            viewDetails.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/viewDetails.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        viewDetails.setResizable(false);
+        viewDetails.show();
+        Stage studentDetail=LoginFormController.getStageInstance();
+        studentDetail.close();
     }
 
     @Override

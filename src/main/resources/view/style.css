@@ -1,4 +1,4 @@
-
+/* Set text color of JFXTextArea for full name to white */
 #txtFullName {
     -fx-text-fill: white; /* Set the text color to white */
     -fx-background-color: #333333; /* Optional: Set background color to dark */

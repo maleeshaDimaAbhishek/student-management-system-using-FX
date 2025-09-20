@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginFormController implements Initializable {
-    Stage studentRegistration=new Stage();
+    static Stage studentRegistration=new Stage();
     @FXML
     private JFXButton btnLogin;
 
@@ -50,7 +50,9 @@ public class LoginFormController implements Initializable {
         }
         clearTextArea();
     }
-
+    public static Stage getStageInstance(){
+        return studentRegistration;
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txtUserName.setOnKeyPressed(event -> {
